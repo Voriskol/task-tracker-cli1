@@ -48,7 +48,7 @@ async function main() {
           throw new Error("ID обязателен для вызова команды.");
         }
         await markTask(parameters[0], "В работе");
-        console.log(`Задача ${parameters[0]} отмечена как "В работе".`);
+        console.log(`Задача ${parameters[0]} отмечена как "в-работе".`);
         break;
       }
       case "отметить-готово": {
@@ -56,12 +56,12 @@ async function main() {
           throw new Error("ID обязателен для вызова команды.");
         }
         await markTask(parameters[0], "Готово");
-        console.log(`Задача ${parameters[0]} отмечена как "Готово".`);
+        console.log(`Задача ${parameters[0]} отмечена как "готово".`);
         break;
       }
       case "список": {
-        const filter = parameters[0] || "Все";
-        const validFilters = ["Все", "К выполнению", "В работе", "Готово"];
+        const filter = parameters[0] || "все";
+        const validFilters = ["все", "к-выполнению", "в-работе", "готово"];
 
         if (!validFilters.includes(filter)) {
           throw new Error(
