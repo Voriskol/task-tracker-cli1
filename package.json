@@ -1,5 +1,8 @@
 {
   "name": "task-tracker-cli",
+  "bin": {
+    "task-cli": "./index.js"
+  },
   "version": "1.0.0",
   "description": "my task tracker",
   "license": "ISC",
