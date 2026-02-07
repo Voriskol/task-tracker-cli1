@@ -28,7 +28,9 @@ async function main() {
       }
       case "обновить": {
         if (parameters.length < 2) {
-          throw new Error("Идентификатор и описание обязательны для вызова команды.");
+          throw new Error(
+            "Идентификатор и описание обязательны для вызова команды.",
+          );
         }
         const [updateId, ...updateDesc] = parameters;
         await updateTask(updateId, updateDesc.join(" "));
@@ -47,7 +49,7 @@ async function main() {
         if (parameters.length === 0) {
           throw new Error("Идентификатор обязателен для вызова команды.");
         }
-        await markTask(parameters[0], "В работе");
+        await markTask(parameters[0], "в-работе");
         console.log(`Задача ${parameters[0]} отмечена как "в-работе".`);
         break;
       }
@@ -55,8 +57,16 @@ async function main() {
         if (parameters.length === 0) {
           throw new Error("Идентификатор обязателен для вызова команды.");
         }
-        await markTask(parameters[0], "Готово");
+        await markTask(parameters[0], "готово");
         console.log(`Задача ${parameters[0]} отмечена как "готово".`);
+        break;
+      }
+      case "отметить-к-выполнению": {
+        if (parameters.length === 0) {
+          throw new Error("Идентификатор обязателен для вызова команды.");
+        }
+        await markTask(parameters[0], "к-выполнению");
+        console.log(`Задача ${parameters[0]} отмечена как "к-выполнению".`);
         break;
       }
       case "список": {
