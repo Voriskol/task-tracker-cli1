@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎯 Задачник - Веб интерфейс</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-tasks"></i>
+                <h1>Задачник</h1>
+            </div>
+            <p class="subtitle">Управляйте задачами через удобный веб-интерфейс</p>
+        </header>
+
+        <!-- Основной контент -->
+        <main class="main-content">
+            <!-- Панель добавления задачи -->
+            <section class="add-task-section">
+                <h2><i class="fas fa-plus-circle"></i> Новая задача</h2>
+                <div class="add-task-form">
+                    <input type="text" 
+                           id="taskInput" 
+                           placeholder="Что нужно сделать?" 
+                           autocomplete="off">
+                    <button id="addTaskBtn" class="btn-primary">
+                        <i class="fas fa-plus"></i> Добавить
+                    </button>
+                </div>
+            </section>
+
+            <!-- Фильтры -->
+            <section class="filters-section">
+                <h2><i class="fas fa-filter"></i> Фильтры</h2>
+                <div class="filters">
+                    <button class="filter-btn active" data-filter="all">
+                        <i class="fas fa-list"></i> Все задачи
+                    </button>
+                    <button class="filter-btn" data-filter="todo">
+                        <i class="fas fa-clock"></i> К выполнению
+                    </button>
+                    <button class="filter-btn" data-filter="in-progress">
+                        <i class="fas fa-spinner"></i> В работе
+                    </button>
+                    <button class="filter-btn" data-filter="done">
+                        <i class="fas fa-check-circle"></i> Готово
+                    </button>
+                </div>
+            </section>
+
+            <!-- Список задач -->
+            <section class="tasks-section">
+                <h2>
+                    <i class="fas fa-tasks"></i> Мои задачи
+                    <span id="taskCount" class="task-count">0 задач</span>
+                </h2>
+                
+                <div id="loading" class="loading">
+                    <i class="fas fa-spinner fa-spin"></i> Загрузка задач...
+                </div>
+                
+                <div id="tasksList" class="tasks-list">
+                    <!-- Задачи будут загружены сюда -->
+                </div>
+                
+                <div id="emptyState" class="empty-state" style="display: none;">
+                    <i class="fas fa-clipboard-list fa-3x"></i>
+                    <h3>Задач пока нет</h3>
+                    <p>Добавьте первую задачу, нажав кнопку "Добавить"</p>
+                </div>
+            </section>
+
+            <!-- Статистика -->
+            <section class="stats-section">
+                <h2><i class="fas fa-chart-bar"></i> Статистика</h2>
+                <div class="stats-cards">
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalTasks">0</div>
+                        <div class="stat-label">Всего задач</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="todoTasks">0</div>
+                        <div class="stat-label">К выполнению</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="inProgressTasks">0</div>
+                        <div class="stat-label">В работе</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="doneTasks">0</div>
+                        <div class="stat-label">Выполнено</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Подвал -->
+        <footer class="footer">
+            <p>🎯 Задачник v1.0 | Используйте также CLI: <code>задачник помощь</code></p>
+            <p class="api-info">
+                <i class="fas fa-code"></i> 
+                API доступен по адресу: <code>/api/tasks</code>
+            </p>
+        </footer>
+    </div>
+
+    <!-- Модальное окно для редактирования -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-edit"></i> Редактировать задачу</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="editTaskInput" placeholder="Описание задачи">
+                <div class="status-selector">
+                    <label>Статус:</label>
+                    <select id="editStatusSelect">
+                        <option value="todo">К выполнению</option>
+                        <option value="in-progress">В работе</option>
+                        <option value="done">Готово</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="saveEditBtn" class="btn-primary">
+                    <i class="fas fa-save"></i> Сохранить
+                </button>
+                <button class="btn-secondary close-modal">
+                    <i class="fas fa-times"></i> Отмена
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
